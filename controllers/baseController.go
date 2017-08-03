@@ -13,8 +13,11 @@ type WebData struct {
 	Title string
 }
 func (c *baseController) Index(w http.ResponseWriter, r *http.Request)  {
-	categories := models.CategoriesAll()
-	views.HomeTemplate.Execute(w, &categories)
+	m := map[string]interface{}{}
+	m["categories"] = models.CategoriesAll()
+	m["products"] = models.ProductsAll()
+
+	views.HomeTemplate.Execute(w, m)
 
 }
 
