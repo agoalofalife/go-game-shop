@@ -29,3 +29,11 @@ INSERT INTO `products`(`name`, `description`, `price`, `image`) VALUES ('SuperMa
 
 INSERT INTO `news`(`title`,`description`, `image`) VALUES ('О новых играх в режиме VR', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. ullamco laboris nisi ut aliquip ex ea commodo consequat.', 11);
 INSERT INTO `news`(`title`,`description`, `image`) VALUES ('О новой PS4 Pro', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. ullamco laboris nisi ut aliquip ex ea commodo consequat.', 10);
+
+INSERT INTO `category_product`( `product_id`, `category_id`) VALUES (1,1);
+INSERT INTO `category_product`( `product_id`, `category_id`) VALUES (2,2);
+INSERT INTO `category_product`( `product_id`, `category_id`) VALUES (3,3);
+INSERT INTO `category_product`( `product_id`, `category_id`) VALUES (4,4);
+INSERT INTO `category_product`( `product_id`, `category_id`) VALUES (5,5);
+INSERT INTO `category_product`( `product_id`, `category_id`) VALUES (6,5);
+INSERT INTO `category_product`( `product_id`, `category_id`) VALUES (7,5);

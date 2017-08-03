@@ -12,13 +12,14 @@ import (
 
 func main() {
 	r := mux.NewRouter()
-	controller := c.New()
+
 
 	loadEnvironment()
 	models.Init()
 	views.LoadTemplates()
 	r.PathPrefix("/static/").Handler(http.StripPrefix("/static/", http.FileServer(http.Dir(`./static/`))))
-	r.HandleFunc("/", controller.Index)
+	r.HandleFunc("/", c.BaseIndex)
+	r.HandleFunc("/products/category/{id}", c.ProductIndex)
 
 	fmt.Println(`Start server ... localhost:8080`)
 	log.Fatal(http.ListenAndServe(":8080", r))

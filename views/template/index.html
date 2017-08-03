@@ -41,7 +41,7 @@
             <div class="sidebar-item__content">
               <ul class="sidebar-category">
                 {{ range $key, $value := .categories }}
-                <li class="sidebar-category__item"><a href="#" class="sidebar-category__item__link">{{ $value.Name }}</a></li>
+                <li class="sidebar-category__item"><a href="/products/category/{{$value.Id}}" class="sidebar-category__item__link">{{ $value.Name }}</a></li>
                 {{ end }}
               </ul>
             </div>

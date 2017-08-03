@@ -6,7 +6,7 @@ import (
 )
 
 type Categories struct {
-	id int
+	Id int
 	Name string
 	Description sql.NullString
 	Created_at NullTime
@@ -22,7 +22,7 @@ func CategoriesAll() []Categories {
 		categories []Categories
 	)
 
-	results,err := DB.Query("SELECT name, description, created_at, update_at FROM `categories`")
+	results,err := DB.Query("SELECT id,name, description, created_at, update_at FROM `categories`")
 	defer results.Close()
 
 	if err != nil {
@@ -30,7 +30,7 @@ func CategoriesAll() []Categories {
 	}
 
 	for results.Next() {
-		err = results.Scan(&category.Name, &category.Description, &category.Created_at, &category.Update_at)
+		err = results.Scan(&category.Id, &category.Name, &category.Description, &category.Created_at, &category.Update_at)
 		categories = append(categories, category)
 		if err != nil {
 			fmt.Print(err.Error())

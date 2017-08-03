@@ -9,9 +9,10 @@ import (
 	"math/rand"
 )
 
-type baseController struct {}
 
-func (c *baseController) Index(w http.ResponseWriter, r *http.Request)  {
+
+func BaseIndex(w http.ResponseWriter, r *http.Request)  {
+
 	m := map[string]interface{}{}
 
 	m["categories"] = models.CategoriesAll()
@@ -21,9 +22,4 @@ func (c *baseController) Index(w http.ResponseWriter, r *http.Request)  {
 
 	views.HomeTemplate.Execute(w, m)
 
-}
-
-func New() *baseController  {
-	c := &baseController{}
-	return c
 }

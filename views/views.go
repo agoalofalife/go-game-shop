@@ -10,6 +10,7 @@ import (
 
 var (
 	HomeTemplate      *template.Template
+	ProductsCategoryTemplate *template.Template
 	message           string
 	//message will store the message to be shown as notification
 	err               error
