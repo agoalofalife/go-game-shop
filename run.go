@@ -2,17 +2,20 @@ package main
 
 import (
 	"fmt"
-	c "github.com/agoalofalife/shop.game/controller"
+	c "github.com/agoalofalife/shop.game/controllers"
+	"github.com/agoalofalife/shop.game/models"
+	"github.com/agoalofalife/shop.game/views"
 	"github.com/gorilla/mux"
 	"log"
 	"net/http"
-	"github.com/agoalofalife/shop.game/views"
 )
 
 func main() {
 	r := mux.NewRouter()
 	controller := c.New()
 
+	loadEnvironment()
+	models.Init()
 	views.LoadTemplates()
 	r.PathPrefix("/static/").Handler(http.StripPrefix("/static/", http.FileServer(http.Dir(`./static/`))))
 	r.HandleFunc("/", controller.Index)
