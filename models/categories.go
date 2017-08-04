@@ -39,3 +39,22 @@ func CategoriesAll() []Categories {
 
 	return categories
 }
+
+func CategoryName(id int) Categories{
+	var (
+		err error
+		category Categories
+	)
+
+	results := DB.QueryRow("SELECT name FROM `categories` WHERE id = ?", id)
+
+	if err != nil {
+		panic(err.Error())
+	}
+	err = results.Scan(&category.Name)
+	if err != nil {
+		fmt.Print(err.Error())
+	}
+
+	return category
+}

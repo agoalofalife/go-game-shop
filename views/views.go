@@ -21,6 +21,7 @@ var (
 func LoadTemplates() {
 	var allFiles []string
 	templatesDir := "./views/template/"
+
 	files, err := ioutil.ReadDir(templatesDir)
 
 	if err != nil {
@@ -44,4 +45,5 @@ func LoadTemplates() {
 		os.Exit(1)
 	}
 	HomeTemplate = templates.Lookup("index.html")
+	ProductsCategoryTemplate = templates.Lookup("category.html")
 }
