@@ -54,6 +54,7 @@ func BasePageNewsConcrete(w http.ResponseWriter, r *http.Request) {
 	m["categories"] = models.CategoriesAll()
 	products := models.ProductsAll()
 	m["randomProduct"] = products[(rand.Int() % len(products))]
+	m["products"] = products[:3]
 	m["new"] = models.NewById(int(id))
 	views.New.Execute(w, m)
 }

@@ -58,21 +58,14 @@
                 </div>
                 <div class="content-main__container">
                     <div class="products-columns">
+                        {{ range $key, $value := .products}}
+
                         <div class="products-columns__item">
-                            <div class="products-columns__item__title-product"><a href="#" class="products-columns__item__title-product__link">The Witcher 3: Wild Hunt</a></div>
-                            <div class="products-columns__item__thumbnail"><a href="#" class="products-columns__item__thumbnail__link"><img src="/static/img/cover/game-1.jpg" alt="Preview-image" class="products-columns__item__thumbnail__img"></a></div>
-                            <div class="products-columns__item__description"><span class="products-price">400 руб</span><a href="#" class="btn btn-blue">Купить</a></div>
+                            <div class="products-columns__item__title-product"><a href="#" class="products-columns__item__title-product__link">{{ $value.Name }}</a></div>
+                            <div class="products-columns__item__thumbnail"><a href="#" class="products-columns__item__thumbnail__link"><img src="{{ $value.Image.Path }}" alt="Preview-image" class="products-columns__item__thumbnail__img"></a></div>
+                            <div class="products-columns__item__description"><span class="products-price">{{ $value.Price }} руб</span><a href="#" class="btn btn-blue">Купить</a></div>
                         </div>
-                        <div class="products-columns__item">
-                            <div class="products-columns__item__title-product"><a href="#" class="products-columns__item__title-product__link">Overwatch</a></div>
-                            <div class="products-columns__item__thumbnail"><a href="#" class="products-columns__item__thumbnail__link"><img src="/static/img/cover/game-2.jpg" alt="Preview-image" class="products-columns__item__thumbnail__img"></a></div>
-                            <div class="products-columns__item__description"><span class="products-price">400 руб</span><a href="#" class="btn btn-blue">Купить</a></div>
-                        </div>
-                        <div class="products-columns__item">
-                            <div class="products-columns__item__title-product"><a href="#" class="products-columns__item__title-product__link">Deus Ex: Mankind Divided</a></div>
-                            <div class="products-columns__item__thumbnail"><a href="#" class="products-columns__item__thumbnail__link"><img src="/static/img/cover/game-3.jpg" alt="Preview-image" class="products-columns__item__thumbnail__img"></a></div>
-                            <div class="products-columns__item__description"><span class="products-price">400 руб</span><a href="#" class="btn btn-blue">Купить</a></div>
-                        </div>
+                        {{ end }}
                     </div>
                 </div>
             </div>
