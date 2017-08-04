@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="ru">
+{{block "head" .}} {{end}}
+<body>
+<div class="main-wrapper">
+    {{block "header" .}} {{end}}
+    <div class="middle">
+        <div class="sidebar">
+            <div class="sidebar-item">
+                <div class="sidebar-item__title">Категории</div>
+                <div class="sidebar-item__content">
+                    <ul class="sidebar-category">
+                        {{ range $key, $value := .categories }}
+                        <li class="sidebar-category__item"><a href="/products/category/{{$value.Id}}" class="sidebar-category__item__link">{{ $value.Name }}</a></li>
+                        {{ end }}
+                    </ul>
+                </div>
+            </div>
+            {{ block "sidebar" .}} {{ end }}
+        </div>
+        <div class="main-content">
+            <div class="content-top">
+                <h3 class="title">Купить игры неборого без регистрации смс с торента, получить компкт диск, скачать Steam игры после оплаты</h3>
+                <div class="slider"><img src="/static/img/slider.png" alt="Image" class="image-main"></div>
+            </div>
+            <div class="content-middle">
+                <div class="content-head__container">
+                    <div class="content-head__title-wrap">
+                        <div class="content-head__title-wrap__title bcg-title">Новости</div>
+                    </div>
+                    <div class="content-head__search-block">
+                        <div class="search-container">
+                            <form class="search-container__form">
+                                <input type="text" class="search-container__form__input">
+                                <button class="search-container__form__btn">search</button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+                <div class="content-main__container">
+                    <div class="news-list__container">
+                        {{ range $key, $value := .news }}
+                        <div class="news-list__item">
+                            <div class="news-list__item__thumbnail"><img src="{{ $value.Image.Path }}"></div>
+                            <div class="news-list__item__content">
+                                <div class="news-list__item__content__news-title">{{ $value.Title }}</div>
+                                <div class="news-list__item__content__news-date">
+                                    {{if  Eq  (TrimSpace $value.Created_at.Time) "0001-01-01 00:00:00 +0000 UTC"  }}
+
+                                    {{else}}
+                                    {{ TimeStamp $value.Created_at.Time }}
+                                    {{end}}
+                                </div>
+
+                                <div class="news-list__item__content__news-content">
+                                    {{ $value.Description}}
+                                </div>
+                            </div>
+                            <div class="news-list__item__content__news-btn-wrap"><a href="/news/{{ $value.Id}}" class="btn btn-brown">Подробнее</a></div>
+                        </div>
+                        {{ end }}
+                    </div>
+                </div>
+            </div>
+            <div class="content-bottom"></div>
+        </div>
+    </div>
+    {{block "footer" .}} {{end}}
+</div>
+<script src="/static/js/main.js"></script>
+</body>
+</html>

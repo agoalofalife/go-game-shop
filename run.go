@@ -13,7 +13,6 @@ import (
 func main() {
 	r := mux.NewRouter()
 
-
 	loadEnvironment()
 	models.Init()
 	views.LoadTemplates()
@@ -21,6 +20,8 @@ func main() {
 	r.HandleFunc("/", c.BaseIndex)
 	r.HandleFunc("/products/category/{id}", c.ProductIndex)
 	r.HandleFunc("/about", c.BasePageAbout)
+	r.HandleFunc("/news", c.BasePageNews)
+	r.HandleFunc("/news/{id}", c.BasePageNewsConcrete)
 
 	fmt.Println(`Start server ... localhost:8080`)
 	log.Fatal(http.ListenAndServe(":8080", r))
