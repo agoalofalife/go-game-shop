@@ -20,6 +20,7 @@ func main() {
 	r.PathPrefix("/static/").Handler(http.StripPrefix("/static/", http.FileServer(http.Dir(`./static/`))))
 	r.HandleFunc("/", c.BaseIndex)
 	r.HandleFunc("/products/category/{id}", c.ProductIndex)
+	r.HandleFunc("/about", c.BasePageAbout)
 
 	fmt.Println(`Start server ... localhost:8080`)
 	log.Fatal(http.ListenAndServe(":8080", r))

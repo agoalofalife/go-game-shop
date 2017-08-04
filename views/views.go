@@ -11,6 +11,7 @@ import (
 var (
 	HomeTemplate      *template.Template
 	ProductsCategoryTemplate *template.Template
+	PageAbout *template.Template
 	message           string
 	//message will store the message to be shown as notification
 	err               error
@@ -46,4 +47,5 @@ func LoadTemplates() {
 	}
 	HomeTemplate = templates.Lookup("index.html")
 	ProductsCategoryTemplate = templates.Lookup("category.html")
+	PageAbout = templates.Lookup("about.html")
 }

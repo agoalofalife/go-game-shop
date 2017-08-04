@@ -1,17 +1,15 @@
 package controllers
 
 import (
-	"net/http"
-	"github.com/gorilla/mux"
 	"github.com/agoalofalife/shop.game/models"
-	"strconv"
 	"github.com/agoalofalife/shop.game/views"
+	"github.com/gorilla/mux"
 	"math/rand"
+	"net/http"
+	"strconv"
 )
 
-
-
-func  ProductIndex(w http.ResponseWriter, r *http.Request)  {
+func ProductIndex(w http.ResponseWriter, r *http.Request) {
 	vars := mux.Vars(r)
 	id, _ := strconv.ParseInt(vars["id"], 10, 32)
 	m := map[string]interface{}{}
@@ -20,6 +18,7 @@ func  ProductIndex(w http.ResponseWriter, r *http.Request)  {
 	m["products"] = models.ProductsByCategory(int(id))
 	m["categoryName"] = models.CategoryName(int(id)).Name
 	m["categories"] = models.CategoriesAll()
+	m["news"] = models.NewsAll()
 	views.ProductsCategoryTemplate.Execute(w, m)
 
 }
