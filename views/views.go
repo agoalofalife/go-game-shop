@@ -15,6 +15,7 @@ var (
 	PageAbout                *template.Template
 	News                     *template.Template
 	New                      *template.Template
+	MyOrders                 *template.Template
 )
 
 func LoadTemplates() {
@@ -61,5 +62,6 @@ func LoadTemplates() {
 	PageAbout = templates.Lookup("about.html")
 	News = templates.Lookup("news.html")
 	New = templates.Lookup("new.html")
+	MyOrders = templates.Lookup("myorders.html")
 
 }

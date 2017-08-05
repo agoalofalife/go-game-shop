@@ -58,3 +58,12 @@ func BasePageNewsConcrete(w http.ResponseWriter, r *http.Request) {
 	m["new"] = models.NewById(int(id))
 	views.New.Execute(w, m)
 }
+
+func BasePageMyOrders(w http.ResponseWriter, r *http.Request) {
+	m := map[string]interface{}{}
+	m["categories"] = models.CategoriesAll()
+	products := models.ProductsAll()
+	m["randomProduct"] = products[(rand.Int() % len(products))]
+	m["news"] = models.NewsAll()
+	views.MyOrders.Execute(w, m)
+}
