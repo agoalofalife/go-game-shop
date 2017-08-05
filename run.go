@@ -1,10 +1,10 @@
 package main
 
 import (
+	c "bitbucket.org/agoalofalife/shop.game/controllers"
+	"bitbucket.org/agoalofalife/shop.game/models"
+	"bitbucket.org/agoalofalife/shop.game/views"
 	"fmt"
-	c "github.com/agoalofalife/shop.game/controllers"
-	"github.com/agoalofalife/shop.game/models"
-	"github.com/agoalofalife/shop.game/views"
 	"github.com/gorilla/mux"
 	"log"
 	"net/http"

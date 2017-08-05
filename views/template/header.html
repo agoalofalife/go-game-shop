@@ -19,8 +19,9 @@
                 <div class="payment-basket__status__basket"><span class="payment-basket__status__basket-value">0</span><span class="payment-basket__status__basket-value-descr">товаров</span></div>
             </div>
         </div>
-        <div class="authorization-block"><a href="#"  class="authorization-block__link">Регистрация</a><a href="#modal" class="authorization-block__link button">Войти</a></div>
+        <div class="authorization-block"><a href="#modalRegistration"  class="authorization-block__link">Регистрация</a><a href="#modal" class="authorization-block__link button">Войти</a></div>
         {{block "modalLogin" .}} {{end}}
+        {{block "modalRegistration" .}} {{end}}
     </div>
 </header>
 {{ end }}

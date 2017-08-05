@@ -1,8 +1,8 @@
 package controllers
 
 import (
-	"github.com/agoalofalife/shop.game/models"
-	"github.com/agoalofalife/shop.game/views"
+	"bitbucket.org/agoalofalife/shop.game/models"
+	"bitbucket.org/agoalofalife/shop.game/views"
 	"github.com/gorilla/mux"
 	"math/rand"
 	"net/http"

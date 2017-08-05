@@ -1,13 +1,17 @@
-{{define "modalLogin"}}
+{{define "modalRegistration"}}
 
 
-<div id="modal">
+<div id="modalRegistration">
     <a href="#"></a>
     <section>
         <form>
             <div>
                 <span><i class="fa fa-envelope"></i></span>
                 <input type="email" name="email" placeholder="Ваш Email адрес" required autofocus>
+            </div>
+            <div>
+                <span><i class="fa fa-envelope"></i></span>
+                <input type="text" name="name" placeholder="Ваше имя" required autofocus>
             </div>
 
             <div>
@@ -18,10 +22,10 @@
             <div class="controls">
                 <button type="submit" class="button">
                     <i class="fa fa-chevron-right"></i>
-                    Логин
+                    Зарегистрироваться
                 </button>
 
-                <a href="#"><i class="fa fa-times"></i> Сбросить</a>
+                <a href="#"><i class="fa fa-times"></i> Выйти</a>
             </div>
         </form>
     </section>
@@ -46,7 +50,7 @@
         margin-top: 25px;
         margin-bottom: 25px;
     }
-    html body #modal {
+    html body #modalRegistration{
         z-index: 10;
         position: absolute;
         left: 0;
@@ -59,10 +63,10 @@
         transition: transform 0.2s ease-in-out, border-radius 0.2s ease-in-out;
         overflow: hidden;
     }
-    html body #modal:focus, html body #modal:target {
+    html body #modalRegistration:focus, html body #modalRegistration:target {
         transform: scale(1);
     }
-    html body #modal > a {
+    html body #modalRegistration > a {
         display: block;
         position: absolute;
         left: 0;
@@ -71,7 +75,7 @@
         bottom: 0;
         cursor: default;
     }
-    html body #modal section {
+    html body #modalRegistration section {
         position: fixed;
         top: 50%;
         left: 50%;
@@ -82,15 +86,15 @@
         background-color: #fff;
         transform: translate(-50%, -50%);
     }
-    html body #modal form div {
+    html body #modalRegistration form div {
         position: relative;
         min-height: 50px;
         margin-top: 25px;
     }
-    html body #modal form div:first-of-type {
+    html body #modalRegistration form div:first-of-type {
         margin-top: 0;
     }
-    html body #modal form div span {
+    html body #modalRegistration form div span {
         position: absolute;
         z-index: 5;
         display: block;
@@ -102,7 +106,7 @@
         background-color: #D0E26C;
         font-size: 20px;
     }
-    html body #modal form div input[type="email"], html body #modal form div input[type="password"] {
+    html body #modalRegistration form div input[type="email"], html body #modalRegistration form div input[type="password"], html body #modalRegistration form div input[type="text"] {
         position: absolute;
         left: 0;
         width: 100%;
@@ -117,25 +121,26 @@
         border-style: solid;
         transition: background-color 0.25s;
     }
-    html body #modal form div input[type="email"]:hover, html body #modal form div input[type="email"]:focus, html body #modal form div input[type="password"]:hover, html body #modal form div input[type="password"]:focus {
+    html body #modalRegistration form div input[type="email"]:hover, html body #modalRegistration form div input[type="email"]:focus, html body #modalRegistration form div input[type="password"]:hover, html body #modalRegistration form div input[type="password"]:focus, html body #modalRegistration form div input[type="email"]:focus, html body #modalRegistration form div input[type="text"]:hover, html body #modalRegistration form div input[type="text"]:focus {
         outline: none;
         background-color: #ddd;
     }
-    html body #modal form div.controls a {
+
+    html body #modalRegistration form div.controls a {
         margin-left: 25px;
         text-decoration: none;
         color: #aaa;
     }
-    html body #modal form div.controls a:hover, html body #modal form div.controls a:focus {
+    html body #modalRegistration form div.controls a:hover, html body #modalRegistration form div.controls a:focus {
         color: #777;
     }
-    html body #modal form div.controls a:active {
+    html body #modalRegistration form div.controls a:active {
         color: #666;
     }
-    html body #modal form div button {
+    html body #modalRegistration form div button {
         margin-left: 50px;
     }
-    html body #modal .button {
+    html body #modalRegistration .button {
         display: inline-block;
         height: 50px;
         line-height: 50px;
@@ -146,11 +151,11 @@
         border: none;
         text-decoration: none;
     }
-    html body #modal .button:hover, html body #modal .button:focus {
+    html body #modalRegistration .button:hover, html body #modalRegistration .button:focus {
         outline: none;
         background-color: #e5892e;
     }
-    html body #modal .button:active {
+    html body #modalRegistration .button:active {
         background-color: #cc7a29;
     }
 
