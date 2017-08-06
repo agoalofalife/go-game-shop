@@ -1,7 +1,6 @@
 package views
 
 import (
-	"bitbucket.org/agoalofalife/shop.game/sessions"
 	"fmt"
 	"html/template"
 	"io/ioutil"
@@ -33,7 +32,6 @@ func LoadTemplates() {
 		"TrimSpace": func(time time.Time) string {
 			return strings.TrimSpace(time.String())
 		},
-		"existUser": sessions.IsLoggedIn,
 	}
 	files, err := ioutil.ReadDir(templatesDir)
 

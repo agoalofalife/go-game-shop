@@ -2,6 +2,7 @@ package controllers
 
 import (
 	"bitbucket.org/agoalofalife/shop.game/models"
+	"bitbucket.org/agoalofalife/shop.game/sessions"
 	"bitbucket.org/agoalofalife/shop.game/views"
 	"github.com/gorilla/mux"
 	"math/rand"
@@ -19,6 +20,7 @@ func ProductIndex(w http.ResponseWriter, r *http.Request) {
 	m["categoryName"] = models.CategoryName(int(id)).Name
 	m["categories"] = models.CategoriesAll()
 	m["news"] = models.NewsAll()
+	m["existUser"] = sessions.IsLoggedIn(r)
 	views.ProductsCategoryTemplate.Execute(w, m)
 
 }
