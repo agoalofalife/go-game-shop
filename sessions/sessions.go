@@ -22,3 +22,10 @@ func AddSession(id int, r *http.Request, w http.ResponseWriter) {
 	session.Values["id"] = id
 	session.Save(r, w)
 }
+
+func RemoveSession(r *http.Request, w http.ResponseWriter) {
+	session, _ := store.Get(r, "session")
+	session.Values["loggedIn"] = "false"
+	session.Values["id"] = ""
+	session.Save(r, w)
+}

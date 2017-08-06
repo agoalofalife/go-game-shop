@@ -5,13 +5,13 @@ import (
 )
 
 type User struct {
-	id         int
-	email      string
-	name       string
-	created_at string
-	update_at  string
-	deleted_at string
-	password   string
+	Id         int
+	Email      string
+	Name       string
+	Created_at string
+	Update_at  string
+	Deleted_at string
+	Password   string
 	authId     string
 }
 
@@ -24,7 +24,7 @@ func UsersAll() User {
 	results, _ := DB.Query("SELECT email, name FROM `users`")
 
 	for results.Next() {
-		err = results.Scan(&user.email, &user.name)
+		err = results.Scan(&user.Email, &user.Name)
 		if err != nil {
 			fmt.Print(err.Error())
 		}
@@ -37,6 +37,20 @@ func UserCreate(parameters map[string]interface{}) int {
 	stmt, _ := DB.Prepare("INSERT users SET email=?, name=?,password=?")
 	results, _ := stmt.Exec(parameters["email"], parameters["name"], parameters["password"])
 	results.RowsAffected()
-	id,_ := results.LastInsertId()
+	id, _ := results.LastInsertId()
 	return int(id)
+}
+
+func UserGetByEmail(email string) User {
+	var (
+		user User
+	)
+
+	results := DB.QueryRow("SELECT id, password FROM `users` WHERE email = ?", email)
+
+	err := results.Scan(&user.Id, &user.Password)
+	if err != nil {
+		fmt.Print(err.Error())
+	}
+	return user
 }

@@ -24,6 +24,8 @@ func main() {
 	r.HandleFunc("/news/{id}", c.BasePageNewsConcrete)
 	r.HandleFunc("/my-orders", c.BasePageMyOrders)
 	r.HandleFunc("/registration", c.AuthRegistration).Methods("POST")
+	r.HandleFunc("/logout", c.AuthLogout)
+	r.HandleFunc("/login", c.AuthLogIn).Methods("POST")
 
 	fmt.Println(`Start server ... localhost:8080`)
 	log.Fatal(http.ListenAndServe(":8080", r))
