@@ -19,7 +19,7 @@ func BaseIndex(w http.ResponseWriter, r *http.Request) {
 	m["products"] = products
 	m["categories"] = models.CategoriesAll()
 	m["news"] = models.NewsAll()
-
+	m["request"] = r
 	views.HomeTemplate.Execute(w, m)
 }
 

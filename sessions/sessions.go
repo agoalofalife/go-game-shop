@@ -15,3 +15,10 @@ func IsLoggedIn(r *http.Request) bool {
 	}
 	return false
 }
+
+func AddSession(id int, r *http.Request, w http.ResponseWriter) {
+	session, _ := store.Get(r, "session")
+	session.Values["loggedIn"] = "true"
+	session.Values["id"] = id
+	session.Save(r, w)
+}
