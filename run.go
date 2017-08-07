@@ -22,6 +22,7 @@ func main() {
 	r.HandleFunc("/about", c.BasePageAbout)
 	r.HandleFunc("/news", c.BasePageNews)
 	r.HandleFunc("/news/{id}", c.BasePageNewsConcrete)
+	r.HandleFunc("/addCart/{id}", c.AddCart)
 	r.HandleFunc("/my-orders", c.BasePageMyOrders)
 	r.HandleFunc("/registration", c.AuthRegistration).Methods("POST")
 	r.HandleFunc("/logout", c.AuthLogout)

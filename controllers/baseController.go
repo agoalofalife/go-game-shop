@@ -21,6 +21,7 @@ func BaseIndex(w http.ResponseWriter, r *http.Request) {
 	m["categories"] = models.CategoriesAll()
 	m["news"] = models.NewsAll()
 	m["existUser"] = sessions.IsLoggedIn(r)
+	m["countCart"] = sessions.CountCartConcreteSession(r)
 	views.HomeTemplate.Execute(w, m)
 }
 
