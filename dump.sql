@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Хост: localhost
--- Время создания: Авг 03 2017 г., 10:42
+-- Время создания: Авг 07 2017 г., 10:57
 -- Версия сервера: 5.7.17
 -- Версия PHP: 5.6.30-7+deb.sury.org~trusty+1
 
@@ -34,6 +34,23 @@ CREATE TABLE `attachments` (
   `deleted_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
+--
+-- Дамп данных таблицы `attachments`
+--
+
+INSERT INTO `attachments` (`id`, `path`, `created_at`, `update_at`, `deleted_at`) VALUES
+(1, '/static/img/cover/game-1.jpg', NULL, NULL, NULL),
+(2, '/static/img/cover/game-2.jpg', NULL, NULL, NULL),
+(3, '/static/img/cover/game-3.jpg', NULL, NULL, NULL),
+(4, '/static/img/cover/game-4.jpg', NULL, NULL, NULL),
+(5, '/static/img/cover/game-5.jpg', NULL, NULL, NULL),
+(6, '/static/img/cover/game-6.jpg', NULL, NULL, NULL),
+(7, '/static/img/cover/game-7.jpg', NULL, NULL, NULL),
+(8, '/static/img/cover/game-8.jpg', NULL, NULL, NULL),
+(9, '/static/img/cover/game-9.jpg', NULL, NULL, NULL),
+(10, '/static/img/news/ps4-pro_01.jpg', NULL, NULL, NULL),
+(11, '/static/img/news/ps_vr.jpg', NULL, NULL, NULL);
+
 -- --------------------------------------------------------
 
 --
@@ -54,11 +71,11 @@ CREATE TABLE `categories` (
 --
 
 INSERT INTO `categories` (`id`, `name`, `description`, `created_at`, `update_at`, `deleted_at`) VALUES
-  (5, 'Action', NULL, NULL, NULL, NULL),
-  (6, 'RPG', NULL, NULL, NULL, NULL),
-  (7, 'Квесты', NULL, NULL, NULL, NULL),
-  (8, 'Онлайн-игры', NULL, NULL, NULL, NULL),
-  (9, 'Стратегии', NULL, NULL, NULL, NULL);
+(1, 'Action', NULL, NULL, NULL, NULL),
+(2, 'RPG', NULL, NULL, NULL, NULL),
+(3, 'Квесты', NULL, NULL, NULL, NULL),
+(4, 'Онлайн-игры', NULL, NULL, NULL, NULL),
+(5, 'Стратегии', NULL, NULL, NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -72,6 +89,19 @@ CREATE TABLE `category_product` (
   `category_id` int(11) NOT NULL,
   `deleted_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Дамп данных таблицы `category_product`
+--
+
+INSERT INTO `category_product` (`id`, `product_id`, `category_id`, `deleted_at`) VALUES
+(1, 1, 1, NULL),
+(2, 2, 2, NULL),
+(3, 3, 3, NULL),
+(4, 4, 4, NULL),
+(5, 5, 5, NULL),
+(6, 6, 5, NULL),
+(7, 7, 5, NULL);
 
 -- --------------------------------------------------------
 
@@ -87,6 +117,40 @@ CREATE TABLE `news` (
   `created_at` timestamp NULL DEFAULT NULL,
   `update_at` timestamp NULL DEFAULT NULL,
   `deleted_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Дамп данных таблицы `news`
+--
+
+INSERT INTO `news` (`id`, `title`, `description`, `image`, `created_at`, `update_at`, `deleted_at`) VALUES
+(1, 'О новых играх в режиме VR', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. ullamco laboris nisi ut aliquip ex ea commodo consequat.', 11, '2017-08-06 21:00:00', NULL, NULL),
+(2, 'О новой PS4 Pro', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. ullamco laboris nisi ut aliquip ex ea commodo consequat.', 10, NULL, NULL, NULL);
+
+-- --------------------------------------------------------
+
+--
+-- Структура таблицы `orders`
+--
+
+CREATE TABLE `orders` (
+  `id` int(11) NOT NULL,
+  `user_id` int(11) NOT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `update_at` timestamp NULL DEFAULT NULL,
+  `deleted_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+-- --------------------------------------------------------
+
+--
+-- Структура таблицы `order_product`
+--
+
+CREATE TABLE `order_product` (
+  `id` int(11) NOT NULL,
+  `order_id` int(11) NOT NULL,
+  `product_id` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
@@ -106,6 +170,19 @@ CREATE TABLE `products` (
   `image` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
+--
+-- Дамп данных таблицы `products`
+--
+
+INSERT INTO `products` (`id`, `name`, `description`, `price`, `created_at`, `update_at`, `deleted_at`, `image`) VALUES
+(1, 'The Witcher 3: Wild Hunt', 'Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit', 200, NULL, NULL, NULL, 1),
+(2, 'Overwatch', 'Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit', 250, NULL, NULL, NULL, 2),
+(3, 'Deus Ex: Mankind Divided', 'Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit', 300, NULL, NULL, NULL, 3),
+(4, 'World of WarCraft', 'Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit', 400, NULL, NULL, NULL, 4),
+(5, 'Call of Duty: Black ops II', 'Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit', 600, NULL, NULL, NULL, 5),
+(6, 'Batman', 'Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit', 500, NULL, NULL, NULL, 6),
+(7, 'SuperMario', 'Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit', 500, NULL, NULL, NULL, 7);
+
 -- --------------------------------------------------------
 
 --
@@ -123,6 +200,13 @@ CREATE TABLE `users` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
+-- Дамп данных таблицы `users`
+--
+
+INSERT INTO `users` (`id`, `email`, `name`, `password`, `created_at`, `update_at`, `deleted_at`) VALUES
+(1, 'agoalofalife@gmail.com', 'Ilya', 'sdcsdv', NULL, NULL, NULL);
+
+--
 -- Индексы сохранённых таблиц
 --
 
@@ -137,29 +221,44 @@ ALTER TABLE `attachments`
 --
 ALTER TABLE `categories`
   ADD PRIMARY KEY (`id`),
-ADD UNIQUE KEY `id` (`id`);
+  ADD UNIQUE KEY `id` (`id`);
 
 --
 -- Индексы таблицы `category_product`
 --
 ALTER TABLE `category_product`
   ADD PRIMARY KEY (`id`),
-ADD KEY `product_id` (`product_id`),
-ADD KEY `category_id` (`category_id`);
+  ADD KEY `product_id` (`product_id`),
+  ADD KEY `category_id` (`category_id`);
 
 --
 -- Индексы таблицы `news`
 --
 ALTER TABLE `news`
   ADD PRIMARY KEY (`id`),
-ADD KEY `attachment_id` (`image`);
+  ADD KEY `attachment_id` (`image`);
+
+--
+-- Индексы таблицы `orders`
+--
+ALTER TABLE `orders`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `orders_fk0` (`user_id`);
+
+--
+-- Индексы таблицы `order_product`
+--
+ALTER TABLE `order_product`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `order_product_fk0` (`order_id`),
+  ADD KEY `order_product_fk1` (`product_id`);
 
 --
 -- Индексы таблицы `products`
 --
 ALTER TABLE `products`
   ADD PRIMARY KEY (`id`),
-ADD KEY `products_fk0` (`image`);
+  ADD KEY `products_fk0` (`image`);
 
 --
 -- Индексы таблицы `users`
@@ -175,32 +274,42 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT для таблицы `attachments`
 --
 ALTER TABLE `attachments`
-MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 --
 -- AUTO_INCREMENT для таблицы `categories`
 --
 ALTER TABLE `categories`
-MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 --
 -- AUTO_INCREMENT для таблицы `category_product`
 --
 ALTER TABLE `category_product`
-MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 --
 -- AUTO_INCREMENT для таблицы `news`
 --
 ALTER TABLE `news`
-MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+--
+-- AUTO_INCREMENT для таблицы `orders`
+--
+ALTER TABLE `orders`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+--
+-- AUTO_INCREMENT для таблицы `order_product`
+--
+ALTER TABLE `order_product`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 --
 -- AUTO_INCREMENT для таблицы `products`
 --
 ALTER TABLE `products`
-MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 --
 -- AUTO_INCREMENT для таблицы `users`
 --
 ALTER TABLE `users`
-MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 --
 -- Ограничения внешнего ключа сохраненных таблиц
 --
@@ -210,7 +319,20 @@ MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 --
 ALTER TABLE `category_product`
   ADD CONSTRAINT `category_product_ibfk_1` FOREIGN KEY (`product_id`) REFERENCES `products` (`id`),
-ADD CONSTRAINT `category_product_ibfk_2` FOREIGN KEY (`category_id`) REFERENCES `categories` (`id`);
+  ADD CONSTRAINT `category_product_ibfk_2` FOREIGN KEY (`category_id`) REFERENCES `categories` (`id`);
+
+--
+-- Ограничения внешнего ключа таблицы `orders`
+--
+ALTER TABLE `orders`
+  ADD CONSTRAINT `orders_fk0` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`);
+
+--
+-- Ограничения внешнего ключа таблицы `order_product`
+--
+ALTER TABLE `order_product`
+  ADD CONSTRAINT `order_product_fk0` FOREIGN KEY (`order_id`) REFERENCES `orders` (`id`),
+  ADD CONSTRAINT `order_product_fk1` FOREIGN KEY (`product_id`) REFERENCES `products` (`id`);
 
 --
 -- Ограничения внешнего ключа таблицы `products`
