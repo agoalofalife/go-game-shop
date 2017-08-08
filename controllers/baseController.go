@@ -9,7 +9,6 @@ import (
 	"math/rand"
 	"net/http"
 	"strconv"
-	"fmt"
 )
 
 func BaseIndex(w http.ResponseWriter, r *http.Request) {
@@ -35,6 +34,8 @@ func BasePageAbout(w http.ResponseWriter, r *http.Request) {
 	m["products"] = products
 	m["news"] = models.NewsAll()
 	m["existUser"] = sessions.IsLoggedIn(r)
+	m["countCart"] = sessions.CountCartConcreteSession(r)
+
 	views.PageAbout.Execute(w, m)
 
 }
@@ -47,6 +48,7 @@ func BasePageNews(w http.ResponseWriter, r *http.Request) {
 	m["randomProduct"] = products[(rand.Int() % len(products))]
 	m["news"] = models.NewsAll()
 	m["existUser"] = sessions.IsLoggedIn(r)
+	m["countCart"] = sessions.CountCartConcreteSession(r)
 	views.News.Execute(w, m)
 }
 
@@ -61,6 +63,7 @@ func BasePageNewsConcrete(w http.ResponseWriter, r *http.Request) {
 	m["products"] = products[:3]
 	m["new"] = models.NewById(int(id))
 	m["existUser"] = sessions.IsLoggedIn(r)
+	m["countCart"] = sessions.CountCartConcreteSession(r)
 	views.New.Execute(w, m)
 }
 
@@ -71,8 +74,8 @@ func BasePageMyOrders(w http.ResponseWriter, r *http.Request) {
 	m["randomProduct"] = products[(rand.Int() % len(products))]
 	m["news"] = models.NewsAll()
 	m["existUser"] = sessions.IsLoggedIn(r)
-
-	fmt.Println(models.ProductListFromCart(sessions.ListProductFromCart(r)))
+	m["countCart"] = sessions.CountCartConcreteSession(r)
+	m["productsCart"] = models.ProductListFromCart(sessions.ListProductFromCart(r))
 
 	views.MyOrders.Execute(w, m)
 }

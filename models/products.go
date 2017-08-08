@@ -87,6 +87,7 @@ func ProductListFromCart(products []sessions.Cart) (productCart []ProductCart) {
 	for _, item := range products {
 		results := DB.QueryRow("SELECT products.id, products.name, products.description, products.price, attachments.path FROM `products` LEFT JOIN attachments ON products.image = attachments.id WHERE products.id = ?", item.Id)
 		results.Scan(&product.Id, &product.Name, &product.Description, &product.Price, &attachment.Path)
+		product.Image = attachment
 		productCart = append(productCart, ProductCart{product, item.Count})
 	}
 	return
