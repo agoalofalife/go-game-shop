@@ -63,7 +63,7 @@
                         <div class="products-columns__item">
                             <div class="products-columns__item__title-product"><a href="#" class="products-columns__item__title-product__link">{{ $value.Name }}</a></div>
                             <div class="products-columns__item__thumbnail"><a href="#" class="products-columns__item__thumbnail__link"><img src="{{ $value.Image.Path }}" alt="Preview-image" class="products-columns__item__thumbnail__img"></a></div>
-                            <div class="products-columns__item__description"><span class="products-price">{{ $value.Price }} руб</span><a href="#" class="btn btn-blue">Купить</a></div>
+                            <div class="products-columns__item__description"><span class="products-price">{{ $value.Price }} руб</span><a href="/addCart/{{ $value.Id }}" class="btn btn-blue">Купить</a></div>
                         </div>
                         {{ end }}
                     </div>
