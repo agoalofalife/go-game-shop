@@ -10,7 +10,7 @@
                     <div class="item-product__thumbnail"><a href="#" class="item-product__thumbnail__link"><img src="{{ .randomProduct.Image.Path }}" alt="Preview-image" class="item-product__thumbnail__link__img"></a></div>
                     <div class="item-product__description">
                         <div class="item-product__description__products-price"><span class="products-price">{{ .randomProduct.Price }} руб</span></div>
-                        <div class="item-product__description__btn-block"><a href="#" class="btn btn-blue">Купить</a></div>
+                        <div class="item-product__description__btn-block"><a href="/addCart/{{ .randomProduct.Id }}" class="btn btn-blue">Купить</a></div>
                     </div>
                 </div>
             </div>

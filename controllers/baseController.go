@@ -9,6 +9,7 @@ import (
 	"math/rand"
 	"net/http"
 	"strconv"
+	"fmt"
 )
 
 func BaseIndex(w http.ResponseWriter, r *http.Request) {
@@ -70,5 +71,8 @@ func BasePageMyOrders(w http.ResponseWriter, r *http.Request) {
 	m["randomProduct"] = products[(rand.Int() % len(products))]
 	m["news"] = models.NewsAll()
 	m["existUser"] = sessions.IsLoggedIn(r)
+
+	fmt.Println(models.ProductListFromCart(sessions.ListProductFromCart(r)))
+
 	views.MyOrders.Execute(w, m)
 }

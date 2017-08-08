@@ -1,13 +1,19 @@
 package sessions
 
 import (
-	"fmt"
+	"encoding/json"
 	"github.com/gorilla/sessions"
 	"net/http"
 	"os"
 )
 
 const product = "product"
+
+// structure for save cart in session
+type Cart struct {
+	Id    int `json:"id"`
+	Count int `json:"count"`
+}
 
 var store = sessions.NewCookieStore([]byte(os.Getenv("SESSION_KEY")))
 
@@ -35,21 +41,53 @@ func RemoveSession(r *http.Request, w http.ResponseWriter) {
 
 func AddProductInSession(r *http.Request, w http.ResponseWriter, id int, count int) {
 	session, _ := store.Get(r, "session")
-	if session.Values[product] == nil {
-		session.Values[product] = make(map[int]int)
-	}
 
-	session.Values[product].(map[int]int)[id] = count
-	//fmt.Println(len(session.Values[product].(map[int]int)))
+	if session.Values[product] != nil {
+		var cartSession []Cart
+		var flagExistId bool = false
+		jsonString := session.Values[product]
+		json.Unmarshal([]byte(jsonString.(string)), &cartSession)
+
+		for key, item := range cartSession {
+			if item.Id == id {
+				cartSession[key].Count = item.Count + 1
+				jsonString, _ := json.Marshal(cartSession)
+				session.Values[product] = string(jsonString)
+				flagExistId = true
+			}
+		}
+
+		if flagExistId == false {
+			c := Cart{id, count}
+			cartSession = append(cartSession, c)
+			jsonString, _ := json.Marshal(cartSession)
+			session.Values[product] = string(jsonString)
+		}
+	} else {
+		c := Cart{id, count}
+		jsonString, _ := json.Marshal([]Cart{c})
+		session.Values[product] = string(jsonString)
+	}
 	session.Save(r, w)
 }
 
 func CountCartConcreteSession(r *http.Request) (count int) {
+	var cartSession []Cart
+	var countProduct int
 	session, _ := store.Get(r, "session")
+	jsonString := session.Values[product]
+	json.Unmarshal([]byte(jsonString.(string)), &cartSession)
 
-	if session.Values[product] == nil {
-		session.Values[product] = make(map[int]int)
+	for _, product := range cartSession {
+		countProduct = countProduct + product.Count
 	}
 
-	return len(session.Values[product].(map[int]int))
+	return countProduct
+}
+
+func ListProductFromCart(r *http.Request) (cartSession []Cart) {
+	session, _ := store.Get(r, "session")
+	jsonString := session.Values[product]
+	json.Unmarshal([]byte(jsonString.(string)), &cartSession)
+	return
 }
